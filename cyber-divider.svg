@@ -1,0 +1,51 @@
+<svg width="800" height="30" viewBox="0 0 800 30" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .glow {
+      stroke: #38BDF8;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 4px #38BDF8);
+    }
+    .glow-core {
+      stroke: #fff;
+      stroke-width: 1;
+    }
+    .glow-purple {
+      stroke: #C084FC;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 5px #C084FC);
+    }
+    
+    @keyframes scan {
+      0% { stroke-dashoffset: 800; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .line-anim {
+      stroke-dasharray: 800;
+      animation: scan 2s linear infinite;
+    }
+    .pulse {
+      animation: pulseAnim 1.5s infinite;
+    }
+    @keyframes pulseAnim {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 1; }
+    }
+  </style>
+
+  <!-- Base faint cyber line -->
+  <line x1="0" y1="15" x2="800" y2="15" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" />
+  
+  <!-- Cyber structural elements -->
+  <path d="M 0 15 L 350 15 L 370 5 L 430 5 L 450 15 L 800 15" class="glow line-anim" fill="none" />
+  <path d="M 0 15 L 350 15 L 370 5 L 430 5 L 450 15 L 800 15" class="glow-core" fill="none" />
+  
+  <path d="M 370 25 L 430 25" class="glow-purple pulse" fill="none" />
+  <line x1="390" y1="5" x2="410" y2="5" stroke="#fff" stroke-width="2" class="pulse" />
+  
+  <!-- Decorative data nodes -->
+  <circle cx="350" cy="15" r="3" fill="#38bdf8" />
+  <circle cx="450" cy="15" r="3" fill="#38bdf8" />
+  <circle cx="400" cy="5" r="4" fill="#c084fc">
+    <animate attributeName="r" values="3;6;3" dur="1s" repeatCount="indefinite" />
+  </circle>
+</svg>

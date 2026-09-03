@@ -1,0 +1,37 @@
+<svg width="800" height="70" viewBox="0 0 800 70" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="neon"><feGaussianBlur stdDeviation="3" result="glow"/><feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glitch-color"><feOffset dx="3" dy="0" in="SourceGraphic" result="red-shift"/><feColorMatrix type="matrix" in="red-shift" result="red" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/><feOffset dx="-3" dy="0" in="SourceGraphic" result="blue-shift"/><feColorMatrix type="matrix" in="blue-shift" result="blue" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/><feMerge><feMergeNode in="red"/><feMergeNode in="blue"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <style>
+    .tech-font { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 38px; fill: #fff; letter-spacing: 4px; transform: skewX(-12deg); }
+    .tech-neon { font-family: 'Impact', 'Arial Black', sans-serif; font-size: 38px; fill: none; stroke: #38bdf8; stroke-width: 4; letter-spacing: 4px; transform: skewX(-12deg); filter: url(#neon); }
+    .tech-sub { font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; fill: #c084fc; letter-spacing: 4px; }
+    
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .cursor { animation: blink 1s infinite; fill: #38bdf8; }
+    
+    @keyframes jitter {
+      0%, 100% { transform: translateX(0); filter: none; }
+      88% { transform: translateX(0); filter: none; }
+      89% { transform: translateX(-6px); filter: url(#glitch-color); }
+      91% { transform: translateX(6px); filter: url(#glitch-color); }
+      92% { transform: translateX(0); filter: none; }
+    }
+    .glitch-group { animation: jitter 3.5s infinite; }
+
+    @keyframes dataScroll { 0% { stroke-dashoffset: 200; } 100% { stroke-dashoffset: 0; } }
+    .hud-line { stroke: rgba(56, 189, 248, 0.5); stroke-width: 2; stroke-dasharray: 20 180; animation: dataScroll 3s infinite linear; }
+  </style>
+
+  <g class="glitch-group" transform="translate(50, 0)">
+    <text x="0" y="50" class="tech-neon">TELEMETRY.DATA</text>
+    <text x="0" y="50" class="tech-font">TELEMETRY.DATA</text>
+    <text x="390" y="45" class="tech-sub">// GITHUB_SCAN_OK <tspan class="cursor">_</tspan></text>
+  </g>
+  
+  <path d="M 10 15 L 20 15 L 25 25 L 25 55 L 20 65 L 10 65" stroke="#38bdf8" stroke-width="2" fill="none" opacity="0.6" filter="url(#neon)"/>
+  <line x1="25" y1="65" x2="780" y2="65" class="hud-line" />
+  <line x1="25" y1="15" x2="300" y2="15" stroke="rgba(192, 132, 252, 0.4)" stroke-width="1" />
+</svg>

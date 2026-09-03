@@ -1,0 +1,138 @@
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* 3D Parallax Animation for Background Space */
+    @keyframes parallaxBg {
+      0% { transform: scale(1.1) translate(0px, 0px) rotateX(0deg) rotateY(0deg); }
+      25% { transform: scale(1.15) translate(-10px, -5px) rotateX(2deg) rotateY(2deg); }
+      50% { transform: scale(1.1) translate(0px, 10px) rotateX(-2deg) rotateY(-1deg); }
+      75% { transform: scale(1.15) translate(10px, 0px) rotateX(1deg) rotateY(-2deg); }
+      100% { transform: scale(1.1) translate(0px, 0px) rotateX(0deg) rotateY(0deg); }
+    }
+    
+    .bg-layer {
+      transform-origin: center;
+      animation: parallaxBg 15s ease-in-out infinite;
+    }
+
+    /* Floating Dust/Stars */
+    @keyframes dustFloat {
+      0% { transform: translateY(0) scale(1) translateX(0); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(-150px) scale(2) translateX(-50px); opacity: 0; }
+    }
+    .dust { fill: #38bdf8; animation: dustFloat 10s linear infinite; }
+    .dust2 { fill: #c084fc; animation: dustFloat 15s linear infinite; animation-delay: -5s; }
+
+    /* The existing Cyber HUD UI */
+    .grid { stroke: rgba(56, 189, 248, 0.4); stroke-width: 1; filter: drop-shadow(0 0 2px #38bdf8); }
+    .neon { stroke: #38bdf8; fill: none; stroke-width: 2; filter: drop-shadow(0 0 6px #38bdf8); }
+    .neon-purple { stroke: #c084fc; fill: none; stroke-width: 2; filter: drop-shadow(0 0 6px #c084fc); }
+    
+    @keyframes rotate3d {
+      0% { transform: rotateX(70deg) rotateZ(0deg) scale(1); }
+      50% { transform: rotateX(70deg) rotateZ(180deg) scale(1.1); }
+      100% { transform: rotateX(70deg) rotateZ(360deg) scale(1); }
+    }
+    .sphere {
+      transform-origin: 400px 150px;
+      animation: rotate3d 12s infinite linear;
+    }
+    
+    @keyframes pulseText {
+      0%, 100% { opacity: 1; text-shadow: 0 0 5px #38bdf8; }
+      50% { opacity: 0.5; }
+    }
+    .hud-text { font-family: 'Courier New', Courier, monospace; fill: #38bdf8; animation: pulseText 2.5s infinite; font-weight: bold; }
+    .hud-sub { font-family: 'Courier New', Courier, monospace; fill: #94a3b8; font-size: 11px; text-shadow: 0 0 2px #000; }
+
+    @keyframes scanline {
+      0% { transform: translateY(-10px); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(310px); opacity: 0; }
+    }
+    .scan { fill: rgba(192, 132, 252, 0.3); animation: scanline 4s linear infinite; }
+    
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      33% { opacity: 0.8; }
+      66% { opacity: 0.3; }
+      70% { opacity: 0.9; }
+    }
+    .flicker-el { animation: flicker 0.2s infinite; }
+  </style>
+
+  <defs>
+    <clipPath id="screen"><rect width="800" height="300" rx="15" /></clipPath>
+  </defs>
+
+  <g clip-path="url(#screen)">
+    <!-- 3D Parallax Background Layer -->
+    <image href="data:image/png;base64,B64_IMAGE" x="-50" y="-50" width="900" height="400" class="bg-layer" preserveAspectRatio="xMidYMid slice" opacity="0.65" />
+    
+    <!-- 3D Particles / Floating Dust -->
+    <circle cx="150" cy="250" r="2" class="dust" />
+    <circle cx="650" cy="280" r="1.5" class="dust2" />
+    <circle cx="350" cy="300" r="3" class="dust" style="animation-duration: 8s; animation-delay: -3s;" />
+    <circle cx="750" cy="220" r="2" class="dust2" style="animation-duration: 12s; animation-delay: -8s;" />
+    
+    <!-- 3D Grid Overlay -->
+    <g transform="perspective(500px) rotateX(60deg) scale(1.5)" transform-origin="400 150">
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" class="grid"/>
+      </pattern>
+      <rect x="-200" y="-150" width="1200" height="600" fill="url(#grid)" />
+    </g>
+
+    <rect width="800" height="15" class="scan" />
+
+    <!-- 3D Holographic Core -->
+    <g class="sphere">
+      <ellipse cx="400" cy="150" rx="90" ry="90" class="neon" />
+      <ellipse cx="400" cy="150" rx="90" ry="25" class="neon" />
+      <ellipse cx="400" cy="150" rx="25" ry="90" class="neon" />
+      <ellipse cx="400" cy="150" rx="90" ry="90" class="neon-purple" transform="rotate(45 400 150)" />
+      <ellipse cx="400" cy="150" rx="90" ry="90" class="neon-purple" transform="rotate(-45 400 150)" />
+      <circle cx="400" cy="150" r="8" fill="#fff" filter="drop-shadow(0 0 10px #c084fc)">
+        <animate attributeName="r" values="4;9;4" dur="1s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- Outer HUD Rings -->
+    <circle cx="400" cy="150" r="140" stroke="rgba(56, 189, 248, 0.6)" stroke-width="2" stroke-dasharray="10 15" fill="none">
+      <animateTransform attributeName="transform" type="rotate" from="0 400 150" to="-360 400 150" dur="20s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Cyber UI Elements - Left -->
+    <path d="M 40 40 L 160 40 L 180 60 L 180 230" class="neon" />
+    <circle cx="40" cy="40" r="5" fill="#c084fc" class="flicker-el" />
+    
+    <text x="40" y="30" class="hud-text" font-size="16">SYSTEM.OVERRIDE()</text>
+    <text x="60" y="80" class="hud-sub">UPLINK_STATUS: <tspan fill="#38bdf8">ONLINE</tspan></text>
+    <text x="60" y="100" class="hud-sub">ENCRYPTION: <tspan fill="#c084fc">QUANTUM-256</tspan></text>
+    <text x="60" y="120" class="hud-sub">LATENCY: 4ms</text>
+    
+    <rect x="60" y="140" width="100" height="6" fill="none" stroke="#38bdf8" />
+    <rect x="62" y="142" width="20" height="2" fill="#38bdf8">
+      <animate attributeName="width" values="20;96;20" dur="2s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Cyber UI Elements - Right -->
+    <path d="M 760 260 L 640 260 L 620 240 L 620 70" class="neon-purple" />
+    <rect x="755" y="255" width="10" height="10" fill="#38bdf8" class="flicker-el" />
+    
+    <text x="610" y="40" class="hud-text" font-size="14">TARGET: DEEP_MATRIX</text>
+    <text x="650" y="60" class="hud-sub">DATA SECTOR 7G</text>
+
+    <!-- Memory blocks -->
+    <g transform="translate(680, 80)">
+      <rect x="0" y="0" width="10" height="20" fill="#c084fc"><animate attributeName="opacity" values="0.2;1;0.2" dur="0.5s" repeatCount="indefinite" /></rect>
+      <rect x="15" y="0" width="10" height="20" fill="#38bdf8"><animate attributeName="opacity" values="0.8;0.1;0.8" dur="0.8s" repeatCount="indefinite" /></rect>
+      <rect x="30" y="0" width="10" height="20" fill="#c084fc"><animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite" /></rect>
+      <rect x="45" y="0" width="10" height="20" fill="#38bdf8"><animate attributeName="opacity" values="0.5;1;0.5" dur="0.7s" repeatCount="indefinite" /></rect>
+    </g>
+    <text x="670" y="120" class="hud-sub">ALLOCATING NEURAL MEMORY...</text>
+  </g>
+  <rect width="800" height="300" rx="15" fill="none" stroke="#38bdf8" stroke-width="2" />
+</svg>

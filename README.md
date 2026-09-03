@@ -5,9 +5,9 @@
 
   <br/><br/>
 
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=4000&pause=1000&color=38BDF8&center=true&vCenter=true&multiline=true&width=650&height=70&lines=%3E_SYS.INIT()+%E2%9C%A8+Zakaria+Makhlouf+%7C+Cyber-Architect;%3E_NAVIGATING_NEURAL_NETWORKS+%26+ALGORITHMS;%3E_CONNECTION_ESTABLISHED+%40+ORL%C3%89ANS_SECTOR" alt="Typing SVG" />
-  </a>
+  <div align="center">
+    <img src="./hero-text.svg" alt="Terminal Text" width="100%" />
+  </div>
 
   <br/>
 

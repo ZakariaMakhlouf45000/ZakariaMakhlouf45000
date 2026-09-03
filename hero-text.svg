@@ -1,0 +1,54 @@
+<svg width="800" height="120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="c1"><rect x="-400" y="-20" height="30" class="clip1" fill="#fff"/></clipPath>
+    <clipPath id="c2"><rect x="-400" y="10" height="30" class="clip2" fill="#fff"/></clipPath>
+    <clipPath id="c3"><rect x="-400" y="40" height="30" class="clip3" fill="#fff"/></clipPath>
+  </defs>
+
+  <style>
+    .terminal {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 19px;
+      fill: #38bdf8;
+      font-weight: bold;
+    }
+    .purple { fill: #c084fc; filter: url(#glow); }
+    .white { fill: #fff; filter: url(#glow); }
+    .accent { fill: #fcd34d; }
+
+    @keyframes reveal1 { 0% { width: 0; } 15%, 100% { width: 800px; } }
+    @keyframes reveal2 { 0%, 20% { width: 0; } 35%, 100% { width: 800px; } }
+    @keyframes reveal3 { 0%, 40% { width: 0; } 55%, 100% { width: 800px; } }
+
+    .clip1 { animation: reveal1 12s infinite steps(40); }
+    .clip2 { animation: reveal2 12s infinite steps(40); }
+    .clip3 { animation: reveal3 12s infinite steps(40); }
+
+    @keyframes blink { 0%, 100% { opacity: 1; filter: url(#glow); } 50% { opacity: 0; filter: none; } }
+    .cursor { animation: blink 1s infinite; fill: #38bdf8; }
+  </style>
+
+  <g transform="translate(400, 30)" text-anchor="middle">
+    <!-- Line 1 -->
+    <g>
+      <text y="0" class="terminal" clip-path="url(#c1)">
+        <tspan class="purple">>_SYS.INIT()</tspan> <tspan class="accent">✨</tspan> <tspan class="white">Zakaria Makhlouf</tspan> | Cyber-Architect
+      </text>
+    </g>
+
+    <!-- Line 2 -->
+    <g>
+      <text y="35" class="terminal" clip-path="url(#c2)">
+        <tspan class="purple">>_EXPLORING</tspan> DEEP NEURAL_NETWORKS &amp; ALGORITHMS 
+      </text>
+    </g>
+
+    <!-- Line 3 -->
+    <g>
+      <text y="70" class="terminal" clip-path="url(#c3)">
+        <tspan class="purple">>_UPLINK_ESTABLISHED</tspan> @ <tspan class="white">ORLÉANS_PRIME</tspan> <tspan class="cursor">█</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
